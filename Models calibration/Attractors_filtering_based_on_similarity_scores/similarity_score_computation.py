@@ -18,9 +18,9 @@ def SMC(x,y):
     return (shared/len(x))
 
 #read the csv file containing the observed Boolean values
-my_path = os.path.join("a-computational-framework-to-build-and-calibrate-large-scale-boolean-models-main","Attractors_filtering_based_on_similarity_scores")
+my_path = os.path.join("large-scale-multicellular-modeling-of-the-arthritic-joint","Models calibration","Attractors_filtering_based_on_similarity_scores")
 os.chdir(my_path)
-inputs_with_expected_values= pd.read_csv("M1_nodes_after_upstream_export_with_known_value_literature.csv",index_col=None,header=0,sep=";")
+inputs_with_expected_values= pd.read_csv("fibro_nodes_after_upstream_export_with_known_value_literature.csv",index_col=None,header=0,sep=";")
 inputs_with_expected_values=inputs_with_expected_values.sort_values(by=['node'])
 inputs_with_expected_values=inputs_with_expected_values.reset_index(drop=True)
 inputs_val=inputs_with_expected_values["value"]
@@ -29,7 +29,7 @@ inputs_val=inputs_with_expected_values["value"]
 i=0
 score_list=[]
 combi_index=[] 
-my_path_2 = os.path.join("a-computational-framework-to-build-and-calibrate-large-scale-boolean-models-main","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
+my_path_2 = os.path.join("large-scale-multicellular-modeling-of-the-arthritic-joint","Models calibration","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
 os.chdir(my_path_2)
 maximum=glob.glob('*.csv')
 
@@ -50,4 +50,4 @@ while i < maximum :
 os.chdir(my_path)   
 score_similarity_on_inputs={'combination_index':combi_index,'similarity_score':score_list}
 score_similarity_on_inputs=pd.DataFrame(score_similarity_on_inputs)
-score_similarity_on_inputs.to_csv('M1_similarity_score_on_nodes.csv')
+score_similarity_on_inputs.to_csv('fibroblast_similarity_score_on_nodes.csv')
