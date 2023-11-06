@@ -3,15 +3,16 @@ library(plyr)
 library(sva)
 library(xlsx)
 
-setwd("C:/Users/I0471594/OneDrive - Sanofi/PhD/Macrophage_fibro_interactions/SANOFI_datasets")
+setwd("Large-scale multicellular modeling of the arthritic joint\\From_sc_rna_seq")
+
 
 #read macrophage dataset
-macro_metadata <- read.delim("Bioturing_E_MTAB_8322_macrophage_SC/STM/E_MTAB_8322_metadata.tsv")
+macro_metadata <- read.delim("Large-scale multicellular modeling of the arthritic joint\\Datasets\\E_MTAB_8322\\E_MTAB_8322_metadata.tsv")
 
 
 #keep only treatment naive RA
 macro_metadata=macro_metadata[macro_metadata$Group=="Naive rheumatoid arthritis",c(1)]
-exp_matrix=read.csv("Bioturing_E_MTAB_8322_macrophage_SC/STM/Merged.matrix.csv")
+exp_matrix=read.csv("Large-scale multicellular modeling of the arthritic joint\\Datasets\\E_MTAB_8322\\Merged.matrix.csv")
 exp_matrix_filtered_macro=exp_matrix[,macro_metadata]
 rownames(exp_matrix_filtered_macro)=exp_matrix[,1]
 #remove genes with var equal zero 
@@ -24,7 +25,7 @@ rownames(exp_matrix_filtered_macro)=NULL
 
 
 #read Th1 gene expression matrix
-TH1_gene_expression_matrix <- read_excel("C:/Users/I0471594/OneDrive - Sanofi (1)/Desktop/multicellular_map_model/datasets/SDY998/TH1_gene_expression_matrix.xlsx")
+TH1_gene_expression_matrix <- read_excel("Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\TH1_gene_expression_matrix.xlsx")
 colnames(TH1_gene_expression_matrix)[1]="ID"
 
 
