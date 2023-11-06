@@ -6,7 +6,7 @@ it filters out the csv files where not all the nodes are stable
 import os
 import pandas as pd
 import glob
-my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Models calibration","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
 os.chdir(my_path)
 co=0
 maximum=glob.glob('*.csv')
