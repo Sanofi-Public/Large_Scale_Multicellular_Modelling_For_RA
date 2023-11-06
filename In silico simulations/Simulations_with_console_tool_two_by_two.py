@@ -14,9 +14,11 @@ import itertools
 from itertools import combinations
 from joblib import Parallel, delayed
 import os
-os.chdir("C:\\Users\\I0471594\\OneDrive - Sanofi\\PhD\\Modeling\\BMA")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","In_silico_simulations","BMA")
+os.chdir(my_path)
 
-file=open("multicell_calibrated.json")
+
+file=open("multicellular_model.json.json")
 global model
 model = json.load(file)
 file.close()
@@ -60,7 +62,7 @@ combi = [(i, combi[i]) for i in range(len(combi))]
 
 def drug_combination(item):
     co,pair=item
-    args='BioCheckConsole.exe -engine VMCAI -model multicell_calibrated.json -prove stability_analysis_'+str(co)+'.json'
+    args='BioCheckConsole.exe -engine VMCAI -model multicellular_model.json -prove stability_analysis_'+str(co)+'.json'
     pair=pair.split(',')
     data=ko_sep_with_targets[ko_sep_with_targets['Names'].isin(pair)]
     data=data.drop(columns=['Names', 'Target_nodes'])
@@ -105,7 +107,7 @@ def drug_combination(item):
         
     df_stable={'stable_nodes_id':stable_nodes_id,'stable_nodes_val':stable_nodes_val,'stable_nodes_name':stable_nodes_name}
     df_stable=pd.DataFrame(df_stable)
-    df_stable.to_csv('C:\\Users\\I0471594\\OneDrive - Sanofi\\PhD\\Modeling\\BMA\\Two_by_Two_simulation_results_multicell\\Simulation'+'_'+str(co)+'.csv')
+    df_stable.to_csv('Large-scale multicellular modeling of the arthritic joint\\In_silico_simulations\\Two_by_Two_simulation_results_multicell\\Simulation'+'_'+str(co)+'.csv')
     os.remove('stability_analysis_'+str(co)+'.json')
 
 Parallel(n_jobs=7)(delayed(drug_combination)(item) for item in combi)
@@ -113,5 +115,5 @@ Parallel(n_jobs=7)(delayed(drug_combination)(item) for item in combi)
   
 combi={'drug_pairs':combi}
 combi=pd.DataFrame(combi)
-combi.to_csv('C:\\Users\\I0471594\\OneDrive - Sanofi\\PhD\\Modeling\\BMA\\Two_by_Two_simulation_results_multicell\\two_by_two_combination_KO_multicell.csv')
+combi.to_csv('Large-scale multicellular modeling of the arthritic joint\\In_silico_simulations\\Two_by_Two_simulation_results_multicell\\two_by_two_combination_KO_multicell.csv')
   
