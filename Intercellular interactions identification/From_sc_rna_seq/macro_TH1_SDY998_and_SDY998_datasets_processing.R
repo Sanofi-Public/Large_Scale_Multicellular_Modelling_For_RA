@@ -3,14 +3,14 @@ library(plyr)
 library(sva)
 library(xlsx)
 
-setwd("C:/Users/I0471594/OneDrive - Sanofi/PhD/Macrophage_fibro_interactions/SANOFI_datasets")
+setwd("Large-scale multicellular modeling of the arthritic joint\\From_sc_rna_seq")
 
 #read macrophage dataset
-metadata <- read.delim("BioTuring_SDY998_fibroblast_SC/SDY998_metadata.tsv")
+metadata <- read.delim("Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\SDY998_metadata.tsv")
 
 #filter dataset
 metadata=metadata[(metadata$Cell.type=="Monocyte")& metadata$Diagnosis=="Rheumatoid arthritis" ,]
-seurat <- readRDS(file = "BioTuring_SDY998_fibroblast_SC/SDY998_seurat_1635258168512.Rds")
+seurat <- readRDS(file = "Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\SDY998_seurat_1635258168512.Rds")
 exp_matrix=as.matrix(GetAssayData(object = seurat, slot = "counts"))
 exp_matrix_filtered=as.data.frame(exp_matrix[,metadata]) # normalized with log2(CPM)
 #remove genes with null variance
@@ -23,7 +23,7 @@ exp_matrix_filtered$ID=as.character(exp_matrix_filtered$ID)
 rownames(exp_matrix_filtered)=NULL
 
 #read Th1 gene expression matrix
-TH1_gene_expression_matrix <- read_excel("C:/Users/I0471594/OneDrive - Sanofi (1)/Desktop/multicellular_map_model/datasets/SDY998/TH1_gene_expression_matrix.xlsx")
+TH1_gene_expression_matrix <- read_excel("Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\TH1_gene_expression_matrix.xlsx")
 colnames(TH1_gene_expression_matrix)[1]="ID"
 
 #join the two datasets
