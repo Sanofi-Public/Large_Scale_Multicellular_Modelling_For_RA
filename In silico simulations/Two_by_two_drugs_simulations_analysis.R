@@ -3,8 +3,8 @@ library(xlsx)
 library(sys)
 library(plyr)
 library(stringi)
-setwd("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/Two_by_Two_simulation_results_multicell")
-calibrated <- read.csv("multicell_calibrated_state.csv", sep=";")
+setwd("large-scale-multicellular-modeling-of-the-arthritic-joint//In silico simulations")
+calibrated <- read.csv("Multicell_model_calibrated_state_with_no_oscillations.csv", sep=";")
 vec=calibrated$stable_nodes_name
 drug_combi<- read.csv("two_by_two_combination_KO_multicell.csv")
 
@@ -25,5 +25,4 @@ for (i in files){
 
 drug_combi_interesting=subset(drug_combi, X %in% interesting)
 drug_combi_interesting =drug_combi_interesting[- grep("| ",drug_combi_interesting$drug_pairs),]
-write.csv(drug_combi_interesting,"C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/drug_combination_multicell_proliferation_and_apoptosis.csv")
 
