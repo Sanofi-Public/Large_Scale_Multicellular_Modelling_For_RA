@@ -13,11 +13,11 @@ import csv
 import pandas as pd
 from joblib import Parallel, delayed
 
-my_path = os.path.join("a-computational-framework-to-build-and-calibrate-large-scale-boolean-models-main","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
 os.chdir(my_path)
 
 #read the model JSON file
-file=open("RA_M1_macrophage.json")
+file=open("RA_fibroblast.json.json")
 global model
 model = json.load(file)
 file.close()
@@ -30,7 +30,7 @@ global fixed_inputs_val
 fixed_inputs_val=[]
 global combi_len
 
-with open('M1_all_inputs_with_fixed_ones.csv', newline = '') as file:                                                                                          
+with open('fibroblast_all_inputs_with_fixed_ones.csv', newline = '') as file:                                                                                          
     file.reader = csv.reader(file, delimiter=';')
     for f in file.reader:
         inputs_name.append(f[0])
@@ -59,7 +59,7 @@ l = [(i, l[i]) for i in range(len(l))]
 def attractors(item):
     ind,combi=item
       
-    args='./BioCheckConsoleMulti -engine VMCAI -model RA_M1_macrophage_for_the_paper.json -prove stability_analysis_'+str(ind)+'.json'
+    args='./BioCheckConsoleMulti -engine VMCAI -model RA_fibroblast.json -prove stability_analysis_'+str(ind)+'.json'
     d= {'inputs_name':inputs,'inputs_id':inputs_id}
     d=pd.DataFrame(d)
     d['inputs_name_cat'] = pd.Categorical(d['inputs_name'],categories=list(inputs_name), ordered=True)
@@ -103,9 +103,9 @@ def attractors(item):
 
 
         #phenotype are stables?
-        proliferation=df_stable.index[df_stable['stable_nodes_name']=="proliferation_survival_M1_macrophage_phenotype"].tolist()
-        apoptosis=df_stable.index[df_stable['stable_nodes_name']=="apoptosis_M1_macrophage_phenotype"].tolist()
-        osteo=df_stable.index[df_stable['stable_nodes_name']=="osteoclastogenesis_M1_macrophage_phenotype"].tolist()
+        proliferation=df_stable.index[df_stable['stable_nodes_name']=="proliferation_survival_Fibroblast_phenotype"].tolist()
+        apoptosis=df_stable.index[df_stable['stable_nodes_name']=="apoptosis_Fibroblast_phenotype"].tolist()
+        migration=df_stable.index[df_stable['stable_nodes_name']=="migration_Fibroblast_phenotype"].tolist()
         
         #phenotype stable and with the right value?
         if proliferation and apoptosis and osteo: 
@@ -122,12 +122,12 @@ def attractors(item):
                 apoptosis=apoptosis.bool()
                 
                 
-                osteo=df_stable["stable_nodes_val"].iloc[osteo] 
-                osteo=osteo.reset_index(drop=True)
-                osteo=osteo[[0]]==1
-                osteo=osteo.bool()
+                migration=df_stable["stable_nodes_val"].iloc[migration] 
+                migration=osteo.reset_index(drop=True)
+                migration=migration[[0]]==1
+                migration=migration.bool()
                 
-                if (proliferation and apoptosis and osteo):
+                if (proliferation and apoptosis and migration):
 
                     try:
                            os.remove('stability_analysis_'+str(ind)+'.json')
