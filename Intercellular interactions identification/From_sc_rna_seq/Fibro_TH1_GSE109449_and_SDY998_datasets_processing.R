@@ -3,18 +3,18 @@ library(plyr)
 library(sva)
 library(xlsx)
 
-setwd("C:/Users/I0471594/OneDrive - Sanofi/PhD/Macrophage_fibro_interactions/SANOFI_datasets")
+setwd("Large-scale multicellular modeling of the arthritic joint\\From_sc_rna_seq")
 
 
 #read fibroblast dataset
-exp_matrix_filtered_fibro=read_excel("C:/Users/I0471594/OneDrive - Sanofi (1)/Desktop/multicellular_map_model/datasets/GSE109449/GSE109449_RA_fibroblast_SC_matrix.xlsx")
+exp_matrix_filtered_fibro=read_excel("Large-scale multicellular modeling of the arthritic joint\\Datasets\\GSE109449\\GSE109449_RA_fibroblast_SC_matrix.xlsx")
 
 colnames(exp_matrix_filtered_fibro)[1]="ID"
 exp_matrix_filtered_fibro=exp_matrix_filtered_fibro %>% select(matches("ID|RA"))
 
 
 #read Th1 gene expression matrix
-TH1_gene_expression_matrix <- read_excel("C:/Users/I0471594/OneDrive - Sanofi (1)/Desktop/multicellular_map_model/datasets/SDY998/TH1_gene_expression_matrix.xlsx")
+TH1_gene_expression_matrix <- read_excel("Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\TH1_gene_expression_matrix.xlsx")
 colnames(TH1_gene_expression_matrix)[1]="ID"
 
 #join the two datasets
