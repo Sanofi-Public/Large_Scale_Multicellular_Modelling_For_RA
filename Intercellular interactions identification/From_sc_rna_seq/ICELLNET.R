@@ -1,7 +1,7 @@
 library(devtools)
 library("dplyr")
 install_github("soumelis-lab/ICELLNET",ref="master", subdir="icellnet")
-setwd("C:/Users/I0471594/OneDrive - Sanofi/PhD/fibro_macro_TH1_interactions")
+setwd("Large-scale multicellular modeling of the arthritic joint\\From_sc_rna_seq")
 library(readxl)
 library(xlsx)
 library(icellnet)
