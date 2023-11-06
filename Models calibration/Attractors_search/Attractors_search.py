@@ -13,7 +13,7 @@ import csv
 import pandas as pd
 from joblib import Parallel, delayed
 
-my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Models calibration","Attractors_search","BioCheckConsoleMulti","BioCheckConsoleMulti","bin","Debug","netcoreapp3.1")
 os.chdir(my_path)
 
 #read the model JSON file
