@@ -26,7 +26,7 @@ indir_fuctions="Large-scale multicellular modeling of the arthritic joint/From_s
 outdir="Large-scale multicellular modeling of the arthritic joint/From_sc_rna_seq/"
 
 # Comma-separated interaction file: one interaction per line, for example: "IL1A | IL1R1,IL1A | IL1RAP":
-subunit_interactions_path=""
+subunit_interactions_path="ICELLNET_interaction_database"
 
 # Select metadata track for analysis, default="CellStates":
 select_track = "CellStatesID"
