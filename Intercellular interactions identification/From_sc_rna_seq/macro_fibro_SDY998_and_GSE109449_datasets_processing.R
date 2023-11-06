@@ -3,14 +3,15 @@ library(plyr)
 library(sva)
 library(xlsx)
 
-setwd("C:/Users/I0471594/OneDrive - Sanofi/PhD/Macrophage_fibro_interactions/SANOFI_datasets")
+setwd("Large-scale multicellular modeling of the arthritic joint\\From_sc_rna_seq")
+
 
 #read macrophage dataset
-macro_metadata <- read.delim("BioTuring_SDY998_fibroblast_SC/SDY998_metadata.tsv")
+macro_metadata <- read.delim("Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\SDY998_metadata.tsv")
 
 #filter dataset
 macro_metadata=macro_metadata[macro_metadata$Cell.type=="Monocyte" & macro_metadata$Diagnosis=="Rheumatoid arthritis",c(1)]
-seurat <- readRDS(file = "BioTuring_SDY998_fibroblast_SC/SDY998_seurat_1635258168512.Rds")
+seurat <- readRDS(file = "Large-scale multicellular modeling of the arthritic joint\\Datasets\\SDY998\\SDY998_seurat_1635258168512.Rds")
 exp_matrix_macro=as.matrix(GetAssayData(object = seurat, slot = "counts"))
 exp_matrix_filtered_macro=as.data.frame(exp_matrix_macro[,macro_metadata]) # normalized with log2(CPM)
 #remove genes with null variance
@@ -24,7 +25,7 @@ rownames(exp_matrix_filtered_macro)=NULL
 
 
 #read fibroblast dataset
-exp_matrix_filtered_fibro=read_excel("C:/Users/I0471594/OneDrive - Sanofi (1)/Desktop/multicellular_map_model/datasets/GSE109449/GSE109449_RA_fibroblast_SC_matrix.xlsx")
+exp_matrix_filtered_fibro=read_excel("Large-scale multicellular modeling of the arthritic joint\\Datasets\\GSE109449\\GSE109449_RA_fibroblast_SC_matrix.xlsx")
 
 colnames(exp_matrix_filtered_fibro)[1]="ID"
 exp_matrix_filtered_fibro=exp_matrix_filtered_fibro %>% select(matches("ID|RA"))
