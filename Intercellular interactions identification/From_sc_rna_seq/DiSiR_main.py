@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created son Fri Mar 19 16:38:34 2021
 
-@author: E0463430
-
-Pipeline for DiSir
-Code and method development: Milad Vahid
-Pipeline and minor edits: Andre Kurlovs
-
-"""
 
 import argparse
 import os
@@ -25,22 +16,17 @@ import numpy as np
 # 1. matrix.mtx: matrix of single-cell gene expression data where its rows are associated with cells and its columns are associated with genes
 # 2. categorical_coloring_data.json: meta data file which includes cell type labels of cells and also other information such as: disease, sub-cell-states and etc.
 # 3. genes.txt: gene names of gene expression matrix
-indir='C:/Users/I0471594/OneDrive - Sanofi/PhD/fibro_macro_TH1_interactions/'
-#indir = '/cloud-data/cloud-pipeline-milad-storage/CATS/For_Naouel/RA_Data/'
-# indir = '/cloud-data/cloud-pipeline-milad-storage/Covid_data/'
-# indir = '/cloud-data/cloud-pipeline-milad-storage/Lung_cancer_data/'
+indir='Large-scale multicellular modeling of the arthritic joint/From_sc_rna_seq/'
+
 
 # Input directory with function scripts:
-indir_fuctions="C:/Users/I0471594/OneDrive - Sanofi/PhD/fibro_macro_TH1_interactions/" 
-#indir_fuctions = "/cloud-data/cloud-pipeline-milad-storage/CATS/For_Naouel/Scripts/"
+indir_fuctions="Large-scale multicellular modeling of the arthritic joint/From_sc_rna_seq/" 
 
 # Output directory to save DiSiR results:
-outdir="C:/Users/I0471594/OneDrive - Sanofi/PhD/fibro_macro_TH1_interactions/"
-#outdir = '/cloud-data/cloud-pipeline-milad-storage/CATS/For_Naouel/Results/RA/'
+outdir="Large-scale multicellular modeling of the arthritic joint/From_sc_rna_seq/"
 
 # Comma-separated interaction file: one interaction per line, for example: "IL1A | IL1R1,IL1A | IL1RAP":
-subunit_interactions_path="C:/Users/I0471594/OneDrive - Sanofi/PhD/fibro_macro_TH1_interactions/Subunit_interactions_all.csv"
-#subunit_interactions_path = '/cloud-data/cloud-pipeline-milad-storage/CATS/For_Naouel/RA_Data/Subunit_interactions_all.csv'
+subunit_interactions_path=""
 
 # Select metadata track for analysis, default="CellStates":
 select_track = "CellStatesID"
