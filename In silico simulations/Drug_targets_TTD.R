@@ -4,7 +4,7 @@ library(tidyr)
 library(dplyr)
 library(readxl)
 library(fuzzyjoin)
-TTD <- read_excel("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/P1-07-Drug-TargetMapping.xlsx")
+TTD <- read_excel("large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\P1-07-Drug-TargetMapping.xlsx")
 
 Filtered_TTD=subset(TTD,MOA != "."& MOA != "Agonist" & MOA != "Modulator"& MOA != "Activator"
                     & MOA != "Stimulator"& MOA != "Stabilizer"& MOA != "Agonis; Inverse agonist"
@@ -19,7 +19,7 @@ Filtered_TTD=subset(TTD,MOA != "."& MOA != "Agonist" & MOA != "Modulator"& MOA !
                     & MOA != "Immunomodulator (Immunostimulant)")
 
 
-TTD_Target_GeneName <- read.delim("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/P1-01-TTD_target_download.txt", header=FALSE, comment.char="#")
+TTD_Target_GeneName <- read.delim("large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\P1-01-TTD_target_download.txt", header=FALSE, comment.char="#")
 TTD_Target_GeneName_f=subset(TTD_Target_GeneName,V2=="GENENAME")
 TTD_Target_GeneName_f=TTD_Target_GeneName_f[,c(1,3)]
 colnames(TTD_Target_GeneName_f)=c("TargetID","GeneName")
@@ -30,7 +30,7 @@ Filtered_TTD_with_genenames=join(Filtered_TTD,TTD_Target_GeneName_f,type="inner"
 length(unique(Filtered_TTD_with_genenames$TargetID)) #1643 unique targets
 
 
-Multicellular_model_occurence<- read.csv("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/Multicellular_model_occurence_per_node_in_fixpoints_with_max_similarity_on_nodes.csv", sep=";")
+Multicellular_model_occurence<- read.csv("large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\Multicell_model_calibrated_state_with_no_oscillations.csv", sep=";")
 Multicellular_nodes_1=as.data.frame(Multicellular_model_occurence$stable_nodes_name)
 Multicellular_nodes=as.data.frame(str_replace_all(Multicellular_nodes_1$`Multicellular_model_occurence$stable_nodes_name`, c("_complex" = "", "_rna" = "",
                                                                                                    "_M2_macrophage_nucleus"="",
@@ -84,17 +84,17 @@ colnames(Multicellular_nodes_1)="Name"
 Multicellular_nodes_1$Name<-as.character(Multicellular_nodes_1$Name)
 Multicellular_nodes = separate_rows(Multicellular_nodes,1,sep = "_")
 multicell_Gene_names_Node_names=regex_left_join(Multicellular_nodes_1,Multicellular_nodes,by = c("Name" = "Name"))
-write.csv(multicell_Gene_names_Node_names,"C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/multicell_Gene_names_Node_names.csv")
-multicell_Gene_names_Node_names <- read.csv("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/multicell_Gene_names_Node_names.csv", sep=";")
+write.csv(multicell_Gene_names_Node_names,"large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\multicell_Gene_names_Node_names.csv")
+multicell_Gene_names_Node_names <- read.csv("large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\multicell_Gene_names_Node_names.csv", sep=";")
 multicell_Gene_names_Node_names=multicell_Gene_names_Node_names %>% group_by(Gene) %>% 
   mutate(Node = paste(Node, collapse=","))
 multicell_Gene_names_Node_names=multicell_Gene_names_Node_names[!duplicated(multicell_Gene_names_Node_names$Gene),]
-write.csv(multicell_Gene_names_Node_names,"C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/multicell_Gene_names_Node_names.csv")
+write.csv(multicell_Gene_names_Node_names,"large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\multicell_Gene_names_Node_names.csv")
 
 
 
 
-multicell_Gene_names_Node_names <- read.csv("C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/multicell_Gene_names_Node_names.csv", sep=";")
+multicell_Gene_names_Node_names <- read.csv("large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\multicell_Gene_names_Node_names.csv", sep=";")
 multicell_drug_targets_in_model= subset(Filtered_TTD_with_genenames, GeneName %in% multicell_Gene_names_Node_names$Name)
 multicell_drug_targets_in_model_name=as.data.frame(unique(multicell_drug_targets_in_model$GeneName))
 colnames(multicell_drug_targets_in_model_name)="Name"
@@ -103,5 +103,5 @@ multicell_drug_targets_in_model_target_nodes=join(multicell_drug_targets_in_mode
 
 multicell_drug_targets_in_model_target_nodes=multicell_drug_targets_in_model_target_nodes[!duplicated(multicell_drug_targets_in_model_target_nodes$Name), ]
 
-write.csv(multicell_drug_targets_in_model_target_nodes,"C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/multicell_targets_nodes.csv")
-write.csv(multicell_drug_targets_in_model_name,"C:/Users/I0471594/PhD_2/In_silico_simulations_multicellular_model/Multicell_drug_targets_in_model.csv")
+write.csv(multicell_drug_targets_in_model_target_nodes,"large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\multicell_targets_nodes.csv")
+write.csv(multicell_drug_targets_in_model_name,"large-scale-multicellular-modeling-of-the-arthritic-joint\\In silico simulations\\Multicell_drug_targets_in_model.csv")
