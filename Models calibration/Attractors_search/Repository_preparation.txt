@@ -6,13 +6,13 @@ rm packages-microsoft-prod.deb
 apt update
 apt install apt-transport-https
 apt install dotnet-sdk-3.1
-cd a-computational-framework-to-build-and-calibrate-large-scale-boolean-models-main/Attractors_search
+cd Large-scale multicellular modeling of the arthritic joint/Attractors_search
 unzip BioCheckConsoleMulti.zip
 cd BioCheckConsoleMulti
 dotnet build
 cd ..
-cp RA_M1_macrophage.json BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1/RA_M1_macrophage.json
-cp M1_all_inputs_with_fixed_ones.csv BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1/M1_all_inputs_with_fixed_ones.csv
+cp RA_fibroblast.json.json BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1/RA_fibroblast.json
+cp fibroblast_all_inputs_with_fixed_ones.csv BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1/fibroblast_all_inputs_with_fixed_ones.csv
 cp Attractors_search.py BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1/Attractors_search.py
 cd BioCheckConsoleMulti/BioCheckConsoleMulti/bin/Debug/netcoreapp3.1
 chmod +x BioCheckConsoleMulti
