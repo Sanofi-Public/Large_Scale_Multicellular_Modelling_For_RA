@@ -10,14 +10,16 @@ import os
 import subprocess
 import itertools
 
-os.chdir("C:\\Users\\I0471594\\OneDrive - Sanofi\\PhD\\Modeling\\BMA")
-file=open("multicell_calibrated.json")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","In silico simulations","BMA")
+os.chdir(my_path)
+
+file=open("multicellular_model.json")
 global model
 model = json.load(file)
 file.close()
 
 
-df = pd.read_csv('multicell_targets_nodes.csv',sep=';', header=0)
+df = pd.read_csv("Large-scale multicellular modeling of the arthritic joint\\In silico simulations\\multicell_targets_nodes.csv',sep=';', header=0)
 ko=df['Target_nodes']
 ko_sep=ko.str.split(',', expand=True)
 all_ko=ko_sep.values.tolist()
@@ -50,7 +52,7 @@ ko_sep_with_targets=pd.concat([M1_targets,ko_sep],axis=1)
 
 
 def drug_testing(ko,co):
-    args='BioCheckConsole.exe -engine VMCAI -model multicell_calibrated.json -prove stability_analysis.json'
+    args='BioCheckConsole.exe -engine VMCAI -model multicellular_model.json -prove stability_analysis.json'
     ko=ko.split(',')
     data=ko_sep_with_targets[ko_sep_with_targets['Target_nodes'].isin(ko)]
     data=data.drop(data.columns[[0]],axis=1)
@@ -95,7 +97,7 @@ def drug_testing(ko,co):
         
     df_stable={'stable_nodes_id':stable_nodes_id,'stable_nodes_val':stable_nodes_val,'stable_nodes_name':stable_nodes_name}
     df_stable=pd.DataFrame(df_stable)
-    df_stable.to_csv('C:\\Users\\I0471594\\OneDrive - Sanofi\\PhD\\Modeling\\BMA\\One_by_One_simulation_results_multicell\\Simulation'+'_'+str(co)+'.csv')
+    df_stable.to_csv('Large-scale multicellular modeling of the arthritic joint\\In silico simulations\\One_by_One_simulation_results_multicell\\Simulation'+'_'+str(co)+'.csv')
     
 
 co=0
