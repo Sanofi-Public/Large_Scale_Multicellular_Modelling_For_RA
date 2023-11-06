@@ -8,7 +8,7 @@ import biolqm
 import os
 
 
-my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Extract_nodes_upstream_phenotype_of_interest")
+my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","Models calibration","Extract_nodes_upstream_phenotype_of_interest")
 os.chdir(my_path)
 
 #load sbml file containing the nodes upstream of the phenotypes of interest and generate the list of nodes upstream of the phenotypes of interest 
