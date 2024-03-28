@@ -21,10 +21,10 @@ os.chdir(my_path)
 #global model
 #model = json.load(file)
 #file.close()
-file=open("RA_fibroblast.json.json")
 global model
-model = json.load(file)
-file.close()
+with open(''RA_fibroblast.json", 'r') as file:
+    model = json.load(file)
+
 
 
 
