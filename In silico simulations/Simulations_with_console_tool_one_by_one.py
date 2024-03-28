@@ -13,10 +13,13 @@ import itertools
 my_path = os.path.join("Large-scale multicellular modeling of the arthritic joint","In silico simulations","BMA")
 os.chdir(my_path)
 
-file=open("multicellular_model.json")
+#file=open("multicellular_model.json")
+#global model
+#model = json.load(file)
+#file.close()
 global model
-model = json.load(file)
-file.close()
+with open(''multicellular_model.json", 'r') as file:
+    model = json.load(file)
 
 
 df = pd.read_csv("Large-scale multicellular modeling of the arthritic joint\\In silico simulations\\multicell_targets_nodes.csv',sep=';', header=0)
@@ -77,9 +80,12 @@ def drug_testing(ko,co):
     stable_nodes_name=[]
       
     
-    file=open('stability_analysis.json')
-    result=json.load(file)
-    file.close()
+    #file=open('stability_analysis.json')
+    #result=json.load(file)
+    #file.close()
+    with open(''stability_analysis.json", 'r') as file:
+    result = json.load(file)
+
       
     for i in result['Ticks'][0]['Variables']:
         if i["Lo"]==i["Hi"]:
