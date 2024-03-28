@@ -18,10 +18,13 @@ my_path = os.path.join("Large-scale multicellular modeling of the arthritic join
 os.chdir(my_path)
 
 
-file=open("multicellular_model.json.json")
+#file=open("multicellular_model.json.json")
+#global model
+#model = json.load(file)
+#file.close()
 global model
-model = json.load(file)
-file.close()
+with open(''multicellular_model.json", 'r') as file:
+    model = json.load(file)
 
 df = pd.read_csv('multicell_targets_nodes.csv',sep=';', header=0)
 ko=df['Target_nodes']
@@ -87,9 +90,12 @@ def drug_combination(item):
     stable_nodes_name=[]
       
     
-    file=open('stability_analysis_'+str(co)+'.json')
-    result=json.load(file)
-    file.close()
+    #file=open('stability_analysis_'+str(co)+'.json')
+    #result=json.load(file)
+    #file.close()
+    with open('stability_analysis_'+str(co)+'.json', 'r') as file:
+    result = json.load(file)
+
       
     for i in result['Ticks'][0]['Variables']:
         if i["Lo"]==i["Hi"]:
