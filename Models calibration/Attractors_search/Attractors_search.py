@@ -17,10 +17,15 @@ my_path = os.path.join("Large-scale multicellular modeling of the arthritic join
 os.chdir(my_path)
 
 #read the model JSON file
+#file=open("RA_fibroblast.json.json")
+#global model
+#model = json.load(file)
+#file.close()
 file=open("RA_fibroblast.json.json")
 global model
 model = json.load(file)
 file.close()
+
 
 
 #read the list of all the inputs in the chosen cell-specific model
@@ -80,9 +85,12 @@ def attractors(item):
       
     file_exists = os.path.exists('stability_analysis_'+str(ind)+'.json')
     if file_exists:
-        file=open('stability_analysis_'+str(ind)+'.json')
-        result=json.load(file)
-        file.close()
+        #file=open('stability_analysis_'+str(ind)+'.json')
+        #result=json.load(file)
+        #file.close()
+        with open('stability_analysis_'+str(ind)+'.json', 'r') as file:
+        result = json.load(file)
+
           
         for i in result['Ticks'][0]['Variables']:
             if i["Lo"]==i["Hi"]:
